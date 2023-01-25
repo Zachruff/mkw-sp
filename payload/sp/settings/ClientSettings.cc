@@ -220,7 +220,7 @@ const Entry entries[] = {
         .valueNames = magic_enum::enum_names<TAGhostTagVisibility>().data(),
         .valueMessageIds = (u32[]) { 10029, 10030, 10031 },
         .valueExplanationMessageIds = (u32[]) { 10032, 10033, 10034 },
-        .vanillaValue = static_cast<u32>(TAGhostTagVisibility::Watched),
+        .vanillaValue = static_cast<u32>(TAGhostTagVisibility::All),
     },
     [static_cast<u32>(Setting::TAGhostTagContent)] = {
         .category = Category::TA,
