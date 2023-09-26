@@ -39,7 +39,6 @@
 #include "game/ui/page/DriftSelectPage.hh"
 #include "game/ui/page/ResultTeamTotalPage.hh"
 
-
 namespace UI {
 
 Page *Section::page(PageId pageId) {
