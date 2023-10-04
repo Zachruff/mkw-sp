@@ -29,7 +29,7 @@ void SettingsPage::onInit() {
         u32 chosen = System::SaveManager::Instance()->getSetting(i) - entry.valueOffset;
 
         if (entry.valueNames) {
-            m_settingOptionIds.push_back(entry.valueExplanationMessageIds[chosen]);
+            m_settingOptionIds.push_back(entry.valueMessageIds[chosen]);
         } else {
             m_settingOptionIds.push_back(10004);
         }
