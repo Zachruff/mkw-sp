@@ -1325,8 +1325,13 @@ for profile in ['DEBUG', 'RELEASE']:
     n.newline()
 
 # runs python postprocess.py build\bin\payload.o symbols.txt build\bin\symbols.txt build\bin\Replacements.c
+
+# symbols.txt
 # there is a difference between symbols.txt and build\bin\symbols.txt. Functions that are replaced
 # have a 'replaced__' prefix before the symbol name. Functions that are not replaced are unchanged.
+
+# Replacements.c
+# For each function symbol, this generated c file has a real symbol and a replaced one. If the function has been REPLACED only, it calls PATCH_B. If it has been REPLACE and REPLACED, PATCH_B_THUNK is called. When REPLACE is called, the original address gets ran, when REPLACED is called, it jumps to the new address for the replacement. I have likely gotten some details incorrect.
 for profile in ['DEBUG', 'RELEASE']:
     suffix = 'D' if profile == 'DEBUG' else ''
     n.build(
@@ -1343,6 +1348,7 @@ for profile in ['DEBUG', 'RELEASE']:
     )
     n.newline()
 
+# this calls python port.py RMC{region}{suffix} symbols.txt, which generates a .ld file.
 for region in ['P', 'E', 'J', 'K']:
     for profile in ['DEBUG', 'RELEASE']:
         suffix = 'D' if profile == 'DEBUG' else ''
