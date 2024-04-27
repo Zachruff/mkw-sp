@@ -1332,6 +1332,11 @@ for profile in ['DEBUG', 'RELEASE']:
 
 # Replacements.c
 # For each function symbol, this generated c file has a real symbol and a replaced one. If the function has been REPLACED only, it calls PATCH_B. If it has been REPLACE and REPLACED, PATCH_B_THUNK is called. When REPLACE is called, the original address gets ran, when REPLACED is called, it jumps to the new address for the replacement. I have likely gotten some details incorrect.
+
+# if a variable in Replacements.c has replaced__ prefix, it is the replaced function in a new address.
+# variables without the prefix are the orignal function address.
+# __attribute__((section("thunks"))) u32 symName_replaced_functName[2] defines a thunk (which is a piece of code that redirects execution) named thunk_replaced_functionName
+# PATCH_B_THUNK is a macro call which patches the original function with the replacement function using the thunk 'thunk_replaced_functionName'
 for profile in ['DEBUG', 'RELEASE']:
     suffix = 'D' if profile == 'DEBUG' else ''
     n.build(
