@@ -1308,6 +1308,7 @@ for target in code_in_files:
             )
         n.newline()
 
+# This links the files in payload (and any other explicit callouts) and generates payloadD.o and payload.o
 for profile in ['DEBUG', 'RELEASE']:
     suffix = 'D' if profile == 'DEBUG' else ''
     n.build(
@@ -1323,6 +1324,9 @@ for profile in ['DEBUG', 'RELEASE']:
     )
     n.newline()
 
+# runs python postprocess.py build\bin\payload.o symbols.txt build\bin\symbols.txt build\bin\Replacements.c
+# there is a difference between symbols.txt and build\bin\symbols.txt. Functions that are replaced
+# have a 'replaced__' prefix before the symbol name. Functions that are not replaced are unchanged.
 for profile in ['DEBUG', 'RELEASE']:
     suffix = 'D' if profile == 'DEBUG' else ''
     n.build(
